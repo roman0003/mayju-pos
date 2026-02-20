@@ -8,6 +8,8 @@ const categoryRoutes = require('./routes/categoryRoutes');
 const productRoutes = require('./routes/productRoutes');
 const inventoryRoutes = require('./routes/inventoryRoutes');
 
+const authRoutes = require('./routes/authRoutes');
+
 require('./models/User');
 require('./models/Category');
 require('./models/Product');
@@ -26,6 +28,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/inventory', inventoryRoutes);
+app.use('/api/auth', authRoutes);
+
 
 // Test route
 app.get('/', (req, res) => {
