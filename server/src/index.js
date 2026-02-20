@@ -1,6 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const sequelize = require('./models/index')
+
+require('./models/User')
+require('./models/Category')
+require('./models/Product')
+require('./models/Inventory')
+require('./models/Bill')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,6 +20,11 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send({ message: `Welcome to ${process.env.SHOP_NAME} POS API!` });
 });
+
+// Sync DB
+sequelize.sync({ alter:true })
+    .then(() => console.log('Database & tables synced!'))
+    .catch(err => console.log(err));
 
 // Start server
 app.listen(PORT, () => {
