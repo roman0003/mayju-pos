@@ -7,6 +7,7 @@ const userRoutes = require('./routes/userRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const productRoutes = require('./routes/productRoutes');
 const inventoryRoutes = require('./routes/inventoryRoutes');
+const billRoutes = require('./routes/billRoutes');
 
 const authRoutes = require('./routes/authRoutes');
 
@@ -15,6 +16,7 @@ require('./models/Category');
 require('./models/Product');
 require('./models/Inventory');
 require('./models/Bill');
+require('./models/BillItem');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,6 +31,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/bills', billRoutes);
 
 
 // Test route
