@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Sales from "./pages/Sales";
 import "./App.css";
 
 function App() {
@@ -20,6 +21,10 @@ function App() {
         <Route
           path="/dashboard"
           element={token ? <Dashboard /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/sales"
+          element={token ? <Sales /> : <Navigate to="/" />}
         />
       </Routes>
     </>
