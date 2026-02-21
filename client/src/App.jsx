@@ -3,9 +3,11 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Sales from "./pages/Sales";
 import "./App.css";
+import { useContext } from "react";
+import {AuthContext} from "./context/AuthContext";
 
 function App() {
-  const token = localStorage.getItem("token");
+  const {token} =  useContext(AuthContext);
   const shopName = import.meta.env.VITE_SHOP_NAME;
 
   return (
@@ -17,7 +19,7 @@ function App() {
 
       {/* Routes */}
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={!token ? <Login /> : <Navigate to ="/dashboard"/>} />
         <Route
           path="/dashboard"
           element={token ? <Dashboard /> : <Navigate to="/" />}

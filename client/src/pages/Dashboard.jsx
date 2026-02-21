@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 function Dashboard() {
   const [products, setProducts] = useState([]);
@@ -8,6 +9,7 @@ function Dashboard() {
 
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
 
   // ======================
   // Fetch Products
@@ -85,19 +87,28 @@ function Dashboard() {
 
   return (
     <div className="flex h-screen">
-      
+
       {/* ================= Products Section ================= */}
       <div className="w-2/3 p-6 overflow-y-auto">
 
-        <div className="flex justify-between mb-4">
+        <div className="flex justify-between mb-4 items-center">
           <h1 className="text-2xl font-bold">Products</h1>
 
-          <button
-            onClick={() => navigate("/sales")}
-            className="bg-black text-white px-4 py-2"
-          >
-            View Sales
-          </button>
+          <div>
+            <button
+              onClick={() => navigate("/sales")}
+              className="bg-black text-white px-4 py-2 mr-2"
+            >
+              View Sales
+            </button>
+
+            <button
+              onClick={logout}
+              className="bg-red-500 text-white px-4 py-2"
+            >
+              Logout
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-3 gap-4">
